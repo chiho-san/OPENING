@@ -1,0 +1,45 @@
+﻿{
+    "Token": "OTI5NTMzMjEyMzA3MzkwNDc0.YdotQw.VhOLthnbAS3B6kd5VHMbWKge_2E.WE",
+    "_comment": "Comandos del bot",
+    "Comandos" : {
+        "DEL": "<<--Tarea_Del*",
+        "Comando": "<<--_Ayuda",
+        "Comando404": "<<--",
+        "Everyone_Error": "contenido del mensaje molesto, contiene un @ everyone o @ here. Mensaje del usuario: ",
+        "meme": "<<--Tarea_meme*"
+    },
+    "imagenes": {
+        "Embed_Imagen": "https://cdn.discordapp.com/attachments/930226948083441695/930960837030588416/Comando_Imagen.png",
+        "meme-img": [
+            "https://cdn.discordapp.com/attachments/930226948083441695/930978669889978368/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f4c736b39677231443064697078773d3d2d3937383232323838372e313634353634376638353133656162623432343237363538333937372e6a7067.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930978788781748244/2019-10-12-10.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930978893236690964/images.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930979287056646185/maxresdefault.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930983914003111936/760e9259c9be0e48780d26c864fd77dcf7ef6dd462600c32336f6fcfc4fe55e4.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930980488838000650/e208fd2f6a946387a4c7e62240fe08f8.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930980057969721394/a2d90d589efd824a51ce0dd1e9c1624a.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930979997991178250/maxresdefault.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930984491873353748/amigo-tengo-que-decirte-algo-yo-tambiC3A9n-ok-a-la-51160282.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930979638841319454/images.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930979534847762442/images.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930979428853493820/1201664_201811263726.png",
+            ""
+        ]
+    },
+    "Embed": {
+        "Embed_Comandos": {
+            "Titulo": "Comandos",
+            "Descripcion": "Tareas! Es un bot amigable que compartiria sus servicios con cualquiera de ustedes, así que ustedes tambien tratenlo bien.\n",
+            "Fields": {
+                "Comando1": {
+                    "Nombre": "<<--Tarea_Del*",
+                    "Funcion": "\nAl activar este comando, cualquier mensaje eliminado sera mostrado publicamente en el canal que se borro el mensaje. Puedes desactivar esta opcion declarando el mismo comando"
+                },
+                "Comando2": {
+                    "Nombre": "<<--Tarea_meme*",
+                    "Funcion": "\nMostrara imagenes de memes aleatorias. Es un comando con imagenes varidas"
+                }
+            }
+        }
+    }
+}
