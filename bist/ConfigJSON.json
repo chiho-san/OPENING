@@ -1,0 +1,57 @@
+{
+    "Token": "OTI5NTMzMjEyMzA3MzkwNDc0.YdotQw.VhOLthnbAS3B6kd5VHMbWKge_2E.WE",
+    "Comandos": {
+        "^k": true,
+        "^k2": "^k",
+        "meme": ">> meme",
+        "aBan": ">> Ban",
+        "Aydua": ">> Ayuda"
+    },
+    "Autor": {
+        "Programador": "ichi ni san#6942"
+    },
+    "Ban_Roles": [
+        "Owner",
+        "Moderador"
+    ],
+    "imagenes":{
+        "memes": [
+            "https://cdn.discordapp.com/attachments/930226948083441695/930978669889978368/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f4c736b39677231443064697078773d3d2d3937383232323838372e313634353634376638353133656162623432343237363538333937372e6a7067.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930978788781748244/2019-10-12-10.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930978893236690964/images.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930979287056646185/maxresdefault.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930979428853493820/1201664_201811263726.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930979492271362128/maxresdefault.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930979534847762442/images.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930979638841319454/images.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930979810782642257/amigo-tengo-que-decirte-algo-yo-tambiC3A9n-ok-a-la-51160282.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930979997991178250/maxresdefault.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930980057969721394/a2d90d589efd824a51ce0dd1e9c1624a.png",
+            "https://cdn.discordapp.com/attachments/930226948083441695/930980488838000650/e208fd2f6a946387a4c7e62240fe08f8.png"
+        ]
+    },
+    "Alertas": {
+        "Error_Desconocido_VariableGlobal": "Error desconocido. Este error es común por lo que se puede arreglar en cuestión de minutos y se te agradeceria que contactaras a un administrador para darle solución al error. Puedes contactar a ",
+        "Ayuda": {
+            "Titulo": "Comando ayuda",
+            "Descripcion": "Estos son las **Tareas** disponibles",
+            "Color": "#EE3838"
+        }
+    },
+    "Errores": {
+        "here": {
+            "firma": "@here",
+            "Molestia": "@here - insoportado"
+        },
+        "everyone": {
+            "firma": "@everyone",
+            "Molestia": "@everyone - insorpotado"
+        },
+        "Ban": {
+            "Titulo": "Baneo exitoso",
+            "Descripcion": "Se realizo con exito la **Tarea** de banear al usurio",
+            "Color": "#17c776",
+            "Caracteres_Maximos": 5
+        }
+    }
+}
