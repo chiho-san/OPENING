@@ -1,136 +1,102 @@
 
-/// Requerir de aquellos documentos
-const { Client, MessageEmbed  } = require("discord.js");
-const Config_JSON = require('./config.json');
-
-/// Variables y Variables tipo funciones
-const bot = new Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
-let Termino = false;
-let confirmacion = false;
-const RandNumber = number =>{
-    return Math.floor(Math.random() * number);
-};
-const VerificarRol = (message, fn)=>{
-    if (message.member.roles.cache.some(role => role.name === "Owner" ) || message.member.roles.cache.some(role => role.name === "Admin" ) || message.member.roles.cache.some(role => role.name === "Moderador" )) {
-        Termino = true
-        fn(Termino);
-    }else{
-        Termino = false
-        fn(Termino);
-    }
-};
-
-const EmbedMeme = (imagen = 'NAN', message) =>{
-    if(imagen === 'NAN'){
-        message.channel.send('Error por parte de la imagen o no existe. Lamentamos este pequeño error, sería genial que nos avisaras de este error para arreglarlo de una vez por todas!');
-    }
-};
-
-/// Eventos de los archivos requeridos
-bot.on(`ready`, ()=>{
-    console.log(`Se conecto ${bot.user.tag}`);
-    const numero = RandNumber(5);
-    switch(numero){
-        case 1:
-            bot.user.setStatus('dnd');break;
-        case 2:
-            bot.user.setStatus('idle');break;
-        case 3:
-            bot.user.setStatus('online');break;
-        case 4:
-            bot.user.setStatus('invisible');break;
-        case 5:
-            console.log("No ps dinosaurio");break;
-        default:
-            console.log('Error indefinido por parte de la variable "numero". Su contenido: ' + numero + "; espero que puedas arreglar el error");
-    };
-})
-
-bot.on(`messageCreate`, msg=>{
-    if(msg.content.startsWith(Config_JSON.Comandos.Comando)){
-        const embeda = new MessageEmbed()
-        .setTitle(Config_JSON.Embed.Embed_Comandos.Titulo)
-        .setAuthor({
-            name: msg.author.username + " — " + " comandos bot",
-            iconURL: msg.author.avatarURL()
-        })
-        .setThumbnail(Config_JSON.imagenes.Embed_Imagen)
-        .setColor('#1E8459')
-        .setDescription(Config_JSON.Embed.Embed_Comandos.Descripcion)
-        .addFields(
-            {name: Config_JSON.Embed.Embed_Comandos.Fields.Comando1.Nombre, value: Config_JSON.Embed.Embed_Comandos.Fields.Comando1.Funcion},
-            {name: Config_JSON.Embed.Embed_Comandos.Fields.Comando2.Nombre, value: Config_JSON.Embed.Embed_Comandos.Fields.Comando2.Funcion}
-        )
-        ;
-        msg.channel.send({ embeds: [embeda] });
-    }else if (msg.content.startsWith(Config_JSON.Comandos.DEL)) {
-        VerificarRol(msg, (awita)=>{
-            if(awita === true){
-                if(confirmacion === true){
-                    setTimeout(()=>{
-                        confirmacion = false;
-                        msg.reply("Se desactivo el rastreador de mensajes eliminados.");
-                    }, 3000);
-                }else if (confirmacion === false) {
-                    confirmacion = true;
-                    setTimeout(()=>{
-                        confirmacion = true;
-                        msg.reply("Se activo el rastreador de mensajes eliminados.");
-                    }, 3000);
-                }else{
-                    msg.channel.send("\nError.")
-                }
-            }else{
-                msg.reply('Este comando no esta disponible para tu rol, solo se encuentra disponible para\n```CSS\n.Owner\n.Admin\n.Moderador```')
-            };
-        });
-    }else if(msg.content === Config_JSON.Comandos.Comando404){
-        msg.reply('**Comando no reconocido** :sob:\nConsulta la lista de comandos con **"<<--_Ayuda"**');
-    }else if(msg.content.startsWith(Config_JSON.Comandos.meme)){
-        let numeroRandom_MemePro = RandNumber(5);
-        switch(numeroRandom_MemePro){
-            case 1:
-                EmbedMeme('NAN', msg);
-                break;
-            case 2:
-                EmbedMeme('NAN', msg);
-                break;
-            case 3:
-                EmbedMeme('NAN', msg);
-                break;
-            case 4:
-                EmbedMeme('NAN', msg);
-                break;
-            case 5:
-                EmbedMeme('NAN', msg);
-                break;
-            default:
-                EmbedMeme('NAN', msg);
-                break;
-            
-        }
-    }
+/// Requerir de aquellos documentos y funciones xdxdxd
+const { Client, MessageEmbed } = require('discord.js');
+const bot = new Client(
+    { intents: ["GUILDS", "GUILD_MESSAGES"] }
+);
+const Help_Command = require('./bist/Funciones/Ayuda_Comando.js')
+const Datos = require("./bist/ConfigJSON.json");
+const { Comandos, Random } = require('./bist/funciones.js');
+const Ban = require('./bist/Funciones/ban.js');
+const RichMeme = (img, msgObject, Color = 'BLUE') =>{
+    const Embeda = new MessageEmbed()
+    .setTitle(`${msgObject.author.username} - invoco un meme`)
+    .setThumbnail(msgObject.author.avatarURL())
+    .setDescription('Aquí tienes tu meme random!')
+    .setColor(Color || 'AQUA')
+    .setImage(img)
+    ;
+    msgObject.channel.send(
+        { embeds: [Embeda] }
+    )
+}
+/// Evento que se dispara cuando el bot este listo para conectarse xdxdxd
+bot.on('ready', ()=>{
+    console.log(`El bot ${bot.user.tag} esta activo`);
 });
-let numero = 0
-bot.on(`messageDelete`, msg=>{
-    if(confirmacion === true){
-        numero = numero + 1
-        console.log("-------------------------------------------- Objeto " + numero + " ------------------------------------")
-        console.log(msg)
-        setTimeout(()=>{
-            const autor = msg.author;
-            autor.send("El rastreador de mensajes eliminados esta activado, por lo tanto eliminar un mensaje esta proibido y se mostrara publicamente el mensaje que eliminastes.");
-            if(msg.content.includes('@everyone') || msg.content.includes('@here') || msg.mentions.everyone){
-                msg.channel.send(Config_JSON.Comandos.Everyone_Error + "@" + msg.author.username + "#" + msg.author.discriminator);
-            }else{
-                if(msg.content.length >= 50){
-                    msg.channel.send("\n\t\t\t\t**Se borro un mensaje**\nDe: **" + msg.author.username + "#" + msg.author.discriminator + "**;\nContenido:\n" + msg.content)
-                }else{
-                    msg.channel.send("\n\t\t\t\t**Se borro un mensaje**\nDe: **" + msg.author.username + "#" + msg.author.discriminator + "**;\nContenido: " + msg.content)
-                }
-            }
-        }, 3000)
-    }
-})
+let Switch_Numero
+/// Evento que se dispara cuando el/la usuario/persona persona cree un mensaje
+bot.on('messageCreate', (msg)=>{
+    
+    /// Funciones ( Clases )
+    const ClaseCMD = new Comandos(msg);
+    const SetCommands = (A, B, C) => ClaseCMD.LlamarComando(   A   , B ,  C    ),
+        Send = A => ClaseCMD.EnviarMensaje(A);
+    
+    /// Comando de la funcion global de "Rastrear mensajes eliminados"
+    SetCommands(Datos.Comandos["^k2"], ()=>{
+        if(Datos.Comandos["^k"] === true){
+            Send('Esta opcion ya esta activada globalmente');
+        }else if(Datos.Comandos["^k"] === false){
+            Datos.Comandos["^k"] = true;
+            setTimeout(()=>{
+                Send('Esta en "verdadero" la opcion de "Rastrear mensajes eliminados"');
+            }, 3000);
+        }else{
+            setTimeout(()=>{
+                Send(Datos.Alertas.Error_Desconocido_VariableGlobal + Datos.Autor.Programador + '; enviale este mensaje: **dato perdido ["' + typeof Datos.Comandos["^k"] + '"] -- contenido: ' + Datos.Comandos["^k"] + '**');
+            }, 3000);
+        }
+    }, false);
 
-bot.login(Config_JSON.Token);
+    /// Comando de memes randoms xdxd
+    SetCommands(Datos.Comandos.meme, ()=>{
+        Switch_Numero = Random(Datos.imagenes.memes.length)
+        switch(Switch_Numero){case 0:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#33FFD7');break;case 1:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#4361C4');break;case 2:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#43BCC4');break;case 3:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#C70039');break;case 4:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#900C3F');break;case 5:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#566573');break;case 6:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#2589E6');break;case 7:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#B825E6');break;case 8:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#06529F');break;case 9:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#29292A');break;case 10:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#E5C306');break;default:msg.channel.send(`No hay meme:sob:${Switch_Numero}`);break;
+    }
+    });
+
+    //// Llamando funciones de otros archivos .js
+
+    // Comando del Ban
+    SetCommands(Datos.Comandos.aBan, ()=>{
+        const init = Ban.init(bot, msg, msg.content);
+        init.Ban()
+    }, false);
+
+    // Comando de "Ayuda"
+    SetCommands(Datos.Comandos.Aydua, ()=>{
+        Help_Command._init(msg);
+    }, false);
+});
+/// Numero de objetos eliminados
+let numero = 0
+
+// Evento que se dispara cuando el usuario borra algun mensaje
+bot.on('messageDelete', msg=>{
+    const ClaseCMD = new Comandos(msg);
+    const Send = A => ClaseCMD.EnviarMensaje(A);
+    setTimeout(()=>{
+
+        ///// Aumentando y mostrando el numero de objetos eliminados en la consola
+        numero++;
+        console.log(`-------------------------- Objeto ${numero} -----------------------------------`);
+        console.log(`\nContenido: ${msg.content}\nDe: @${msg.author.tag}\nServidor ID: ${msg.guild.id}\nCanal ID: ${msg.channel.id}`)
+        /// Evitando ping internacional en todo el servidor :D
+        if(Datos.Comandos["^k"] === true){
+            if(msg.content.includes(Datos.Errores.here.firma)){
+                Send(`\t\nSe borro un mensaje por parte del usuario **${msg.author.username}** y incluia un **"@ here"**. No se podra mostrar el mensaje publicamente :sob:`);
+            }else if(msg.content.includes(Datos.Errores.everyone.firma)){
+                Send(`\t\nSe borro un mensaje por parte del usuario **${msg.author.username}** y incluia un **"@ everyone"**. No se podra mostrar el mensaje publicamente :sob:`);
+            }else{
+                Send(`**Se borro una mensaje**\n-\nDe: [" **@${msg.author.tag}** "]\n-\nContenido: ${msg.content}`)
+            }
+        }else{
+            Send('Error. Los mensajes eliminados actualmente, no podran ser mostrados en pantalla. Puedes reiniciar este sistema con el comando `"^k"`')
+        }
+    }, 3000);
+
+});
+
+/// Token del bot
+bot.login(Datos.Token);
