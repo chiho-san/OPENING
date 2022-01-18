@@ -12,13 +12,10 @@ const RichMeme = (img, msgObject, Color = 'BLUE') =>{
     const Embeda = new MessageEmbed()
     .setTitle(`${msgObject.author.username} - invoco un meme`)
     .setThumbnail(msgObject.author.avatarURL())
-    .setColor(Color || 'AQUA');
-    if(img.endsWith('.png')){
-        Embeda.setDescription('Aquí tienes tu meme random!')
-        Embeda.setImage(img)
-    }else if(img.endsWith('.gif')){
-        Embeda.setDescription(img)
-    }
+    .setDescription('Aquí tienes tu meme random!')
+    .setColor(Color || 'AQUA')
+    .setImage(img)
+    ;
     msgObject.channel.send(
         { embeds: [Embeda] }
     )
@@ -41,9 +38,9 @@ bot.on('messageCreate', (msg)=>{
         if(Datos.Comandos["^k"] === true){
             Send('Esta opcion ya esta activada globalmente');
         }else if(Datos.Comandos["^k"] === false){
-            Datos.Comandos["^k"] = true;
+            // Datos.Comandos["^k"] = true;
             setTimeout(()=>{
-                Send('Esta en "verdadero" la opcion de "Rastrear mensajes eliminados"');
+                Send('La **Tarea** rastreadora de mensajes eliminados dejo de buscar ya que la opcion esta en "falso" y no en "verdadero". Puedes ponerlo en "verdadero" con el comando "k^T"');
             }, 3000);
         }else{
             setTimeout(()=>{
@@ -52,11 +49,18 @@ bot.on('messageCreate', (msg)=>{
         }
     }, false);
 
+    SetCommands('k^T', ()=>{
+        if(Datos.Comandos["^k"] === false){
+            Datos.Comandos["^k"] = true;
+            Send('Se reactivo la opcion rastreadora de mensajes!\nLos mensajes eliminados seran volver a ser mostrados en pantalla de ahora en adelante');
+        }
+    }, false)
+
     /// Comando de memes randoms xdxd
     SetCommands(Datos.Comandos.meme, ()=>{
         Switch_Numero = Random(Datos.imagenes.memes.length)
         switch(Switch_Numero){case 0:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#33FFD7');break;case 1:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#4361C4');break;case 2:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#43BCC4');break;case 3:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#C70039');break;case 4:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#900C3F');break;case 5:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#566573');break;case 6:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#2589E6');break;case 7:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#B825E6');break;case 8:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#06529F');break;case 9:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#29292A');break;case 10:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#E5C306');break;
-        case 11: case 12: case 13: case 14: case 15: case 16: case 17: case 18: case 19: case 20: RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#33FFD7');break;
+        case 11: case 12: case 13: case 14: case 15: case 16: case 17: case 18: case 19: case 20: case 21: case 22: case 23: case 24: case 25: case 26: case 27: case 28: case 29: case 30: RichMeme(Datos.imagenes.memes[Switch_Numero], msg,'#2980B9');
     }
     });
 
@@ -72,6 +76,9 @@ bot.on('messageCreate', (msg)=>{
     SetCommands(Datos.Comandos.Aydua, ()=>{
         Help_Command._init(msg);
     }, false);
+
+    // Comando de "no l ose "
+    
 });
 /// Numero de objetos eliminados
 let numero = 0
@@ -93,10 +100,12 @@ bot.on('messageDelete', msg=>{
             }else if(msg.content.includes(Datos.Errores.everyone.firma)){
                 Send(`\t\nSe borro un mensaje por parte del usuario **${msg.author.username}** y incluia un **"@ everyone"**. No se podra mostrar el mensaje publicamente :sob:`);
             }else{
-                Send(`**Se borro una mensaje**\n-\nDe: [" **@${msg.author.tag}** "]\n-\nContenido: ${msg.content}`)
+                Send(`**--------- Se borro una mensaje ---------**\n-\nDe: [" **@${msg.author.tag}** "]\n-\nContenido: ${msg.content}`)
             }
+        }else if(Datos.Comandos["^k"] === false){
+            Send('Error. Los mensajes eliminados actualmente, no podran ser mostrados en pantalla. Puedes reiniciar este sistema con el comando `"k^T"`')
         }else{
-            Send('Error. Los mensajes eliminados actualmente, no podran ser mostrados en pantalla. Puedes reiniciar este sistema con el comando `"^k"`')
+            Send('Error desconocido. No se podra mostrar en pantalla el mensaje eliminado por el usuario **' + msg.author.tag + '**')
         }
     }, 3000);
 
