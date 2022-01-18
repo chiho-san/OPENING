@@ -12,10 +12,13 @@ const RichMeme = (img, msgObject, Color = 'BLUE') =>{
     const Embeda = new MessageEmbed()
     .setTitle(`${msgObject.author.username} - invoco un meme`)
     .setThumbnail(msgObject.author.avatarURL())
-    .setDescription('Aquí tienes tu meme random!')
-    .setColor(Color || 'AQUA')
-    .setImage(img)
-    ;
+    .setColor(Color || 'AQUA');
+    if(img.endsWith('.png')){
+        Embeda.setDescription('Aquí tienes tu meme random!')
+        Embeda.setImage(img)
+    }else if(img.endsWith('.gif')){
+        Embeda.setDescription(img)
+    }
     msgObject.channel.send(
         { embeds: [Embeda] }
     )
@@ -52,7 +55,8 @@ bot.on('messageCreate', (msg)=>{
     /// Comando de memes randoms xdxd
     SetCommands(Datos.Comandos.meme, ()=>{
         Switch_Numero = Random(Datos.imagenes.memes.length)
-        switch(Switch_Numero){case 0:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#33FFD7');break;case 1:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#4361C4');break;case 2:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#43BCC4');break;case 3:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#C70039');break;case 4:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#900C3F');break;case 5:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#566573');break;case 6:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#2589E6');break;case 7:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#B825E6');break;case 8:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#06529F');break;case 9:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#29292A');break;case 10:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#E5C306');break;default:msg.channel.send(`No hay meme:sob:${Switch_Numero}`);break;
+        switch(Switch_Numero){case 0:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#33FFD7');break;case 1:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#4361C4');break;case 2:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#43BCC4');break;case 3:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#C70039');break;case 4:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#900C3F');break;case 5:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#566573');break;case 6:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#2589E6');break;case 7:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#B825E6');break;case 8:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#06529F');break;case 9:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#29292A');break;case 10:RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#E5C306');break;
+        case 11: case 12: case 13: case 14: case 15: case 16: case 17: case 18: case 19: case 20: RichMeme(Datos.imagenes.memes[Switch_Numero],msg,'#33FFD7');break;
     }
     });
 
