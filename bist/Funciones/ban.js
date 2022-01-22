@@ -13,20 +13,18 @@ module.exports = {
         return {
             Ban: ()=>{
                 const permisos = (msg.member.roles.cache.some(r=>Config.Ban_Roles.includes(r.name)) )
-                if(!permisos) return msg.reply('No tienes los permisos necesarios para utilizar este comando!');
-                if(!msg.guild.me.permissions.has('ADMINISTRATOR')) return;
+                if(!permisos) return msg.reply('No tienes los permisos necesarios para utilizar este comando!\nSolo los usuarios con los roles: **' + Config.Ban_Roles[0] + '**, **' + Config.Ban_Roles[1] + '** y **' + Config.Ban_Roles[2] + '** tienen permitido usar este comando');
                 let usuario = msg.mentions.members.first();
                 if(!usuario) return msg.reply('Debes de mencionar a alguien');
-                if(usuario.id === msg.guild.ownerId) return msg.reply('No se puede banear al Owner de servidor')
+                if(usuario.id === msg.guild.ownerId) return msg.reply('No se puede banear al Owner de servidor');
+                if(usuario.id === bot.user.id) return msg.reply('no puedes banear al bot desde un comando!');
                 let Razon_Ban = args.slice(Config.Errores.Ban.Caracteres_Maximos);
                 if(!Razon_Ban) return msg.reply('Es necesario una razón para proceder con el ban');
                 if(usuario === msg.author) return msg.reply('No te puedes banear a ti mismo');
 
                 // Mandando mensaje a la victima
-                bot.users.fetch(`${usuario.id}`, false)
-                    .catch(user =>{
-                        user.send(`**Se te a baneado del servidor por la siguiente razón:**\n\nRazón: ${Razon_Ban}`)
-                });
+                let ARS = bot.users.cache.get(`${usuario.id}`);
+                ARS.send(`**------------------ La razón por la cual fuistes baneado del servidor ------------------**\nBaneado por: **@${msg.author.username}${msg.author.discriminator}**\nRazon: ${Razon_Ban}` )
 
                 msg.channel.send(`Quedan 10 segundos para el baneo del usuario ${usuario}`);
                 setTimeout(()=>{
@@ -50,4 +48,3 @@ module.exports = {
             }
         }
     }
-}
