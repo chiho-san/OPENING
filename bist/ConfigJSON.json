@@ -1,18 +1,20 @@
 {
-    "Token": "OTI5NTMzMjEyMzA3MzkwNDc0.YdotQw.VhOLthnbAS3B6kd5VHMbWKge_2E.WE",
+    "Token": "it.OTI5NTMzMjEyMzA3MzkwNDc0.YdotQw.VhOLthnbAS3B6kd5VHMbWKge_2E",
     "Comandos": {
         "^k": true,
         "^k2": "^k",
         "meme": ">> meme",
         "aBan": ">> Ban",
-        "Aydua": ">> Ayuda"
+        "Aydua": ">> Ayuda",
+        "momos": ">> momos"
     },
     "Autor": {
         "Programador": "ichi ni san#6942"
     },
     "Ban_Roles": [
         "Owner",
-        "Moderador"
+        "Moderador",
+        "Banw"
     ],
     "imagenes":{
         "memes": [
@@ -31,9 +33,21 @@
             "https://media.discordapp.net/attachments/931270702487728191/932659316094271548/cuando-te-tragas-un-pedazo-de-tamal-sin-soplarle-primero-62466606.png",
             "https://media.discordapp.net/attachments/931270702487728191/932658118792474654/ELTRNV5HJ5K3DMZRAR3RJ3R3HE.png",
             "https://media.discordapp.net/attachments/931270702487728191/932657672149422140/ee817221f8d0df227372d8605531514a.png",
-            "https://tenor.com/view/el-pepe-gif-23666676",
             "https://cdn.discordapp.com/attachments/931270702487728191/933020818236133486/Memes-de-Gatos-09-300x300.png",
-            "https://cdn.discordapp.com/attachments/931270702487728191/933021900836323418/5e91cff307bc2.png"
+            "https://cdn.discordapp.com/attachments/931270702487728191/933021900836323418/5e91cff307bc2.png",
+            "https://cdn.discordapp.com/attachments/931270702487728191/933080716563083334/images.png",
+            "https://cdn.discordapp.com/attachments/931270702487728191/933080355961970768/images.png",
+            "https://cdn.discordapp.com/attachments/931270702487728191/933077453709144084/meme-line.png",
+            "https://cdn.discordapp.com/attachments/931270702487728191/933069790053019648/1CB30E10-781F-4CA5-92DC-8AE094FD195E.jpg",
+            "https://media.discordapp.net/attachments/931270702487728191/933091822027300944/M6ZDUQNYORG3BD6U2PUJSRZOJY.png",
+            "https://media.discordapp.net/attachments/931270702487728191/933099100856016946/2d0e46ed371051a3a2f35908515b84bf.png",
+            "https://media.discordapp.net/attachments/931270702487728191/933099424408809542/memes-caida-facebook-instagram-twitter-12.png",
+            "https://media.discordapp.net/attachments/931270702487728191/933104202287317102/161233662_484157159263582_1794047731852238328_n-4530843465.png",
+            "https://media.discordapp.net/attachments/931270702487728191/933103186519162951/maxresdefault.jpg",
+            "https://media.discordapp.net/attachments/931270702487728191/933103785469956146/maxresdefault.jpg",
+            "https://media.discordapp.net/attachments/931270702487728191/933102310471655454/meme-among-us-medico.png",
+            "https://media.discordapp.net/attachments/931270702487728191/933101646668525598/16093696211244.png",
+            "https://media.discordapp.net/attachments/931270702487728191/933102180620185640/Ea6gr7qXYAI924L.png"
         ]
     },
     "Alertas": {
